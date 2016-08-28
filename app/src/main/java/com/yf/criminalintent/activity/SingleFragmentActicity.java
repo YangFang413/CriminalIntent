@@ -1,6 +1,7 @@
 package com.yf.criminalintent.activity;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,11 @@ import com.yf.criminalintent.R;
 // 抽象类，用来封装不同的activity加载同一个容器类的布局文件的公共代码
 public abstract class SingleFragmentActicity extends AppCompatActivity {
 
+    @LayoutRes
+    protected int getLayoutResId(){
+        return R.layout.activity_fragment;
+    }
+
     // 抽象方法，继承此类必须重写这个抽象方法
     protected abstract Fragment createFragment();
 
@@ -21,7 +27,8 @@ public abstract class SingleFragmentActicity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment);
+        // setContentView(R.layout.activity_fragment);
+        setContentView(getLayoutResId());
 
         // 碎片管理者FragmentManager，具体管理fragment队列和fragment事务回退栈，可以进行的操作：
         // 得到Activity中存在的fragment
